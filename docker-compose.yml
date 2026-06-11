@@ -1,0 +1,48 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mall_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root1234
+      MYSQL_DATABASE: malldb
+      MYSQL_USER: malldbuser
+      MYSQL_PASSWORD: malldbuser
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "malldbuser", "-pmalldbuser"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  mallapi:
+    build:
+      context: ./backend/mallapi
+      dockerfile: Dockerfile
+    container_name: mall_backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/malldb
+      SPRING_DATASOURCE_USERNAME: malldbuser
+      SPRING_DATASOURCE_PASSWORD: malldbuser
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    volumes:
+      - ./backend/mallapi/upload:/app/upload
+
+  mall:
+    build:
+      context: ./frontend/mall
+      dockerfile: Dockerfile
+    container_name: mall_frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - mallapi
+
+volumes:
+  mysql_data:

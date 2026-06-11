@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//f/IBM4/AKI/backend/mallapi/src/main/java/com/mysite/mallapi/repository/**)",
+      "Read(//f/IBM4/AKI/backend/mallapi/src/main/java/com/mysite/mallapi/dto/**)",
+      "Read(//f/IBM4/AKI/backend/mallapi/src/main/java/com/mysite/mallapi/security/filter/**)",
+      "Read(//f/IBM4/AKI/backend/mallapi/**)",
+      "Bash(ls \"F:/IBM4/AKI/backend\")",
+      "Read(//f/IBM4/AKI/backend/**)"
+    ]
+  }
+}
