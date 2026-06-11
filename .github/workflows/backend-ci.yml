@@ -56,6 +56,7 @@ jobs:
           echo "spring.datasource.username=malldbuser" >> backend/mallapi/src/test/resources/application.properties
           echo "spring.datasource.password=malldbuser" >> backend/mallapi/src/test/resources/application.properties
           echo "spring.jpa.hibernate.ddl-auto=update" >> backend/mallapi/src/test/resources/application.properties
+          echo "com.mysite.upload.path=upload" >> backend/mallapi/src/test/resources/application.properties
           cat backend/mallapi/src/test/resources/application.properties
 
       - name: Build with Gradle
