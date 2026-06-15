@@ -9,8 +9,8 @@ node {
 
    stage('Push image') {
      withDockerRegistry([ credentialsId: "docker-access", url: "" ]) {
-     backendImage.push()
-     frontendImage.push()
+       backendImage.push()
+       frontendImage.push()
      }
    }
 }
