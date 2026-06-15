@@ -40,7 +40,7 @@ services:
       dockerfile: Dockerfile
     container_name: mall_frontend
     ports:
-      - "80:80"
+      - "81:80"
     depends_on:
       - mallapi
 
