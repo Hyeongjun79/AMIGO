@@ -36,3 +36,11 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build -x test --no-daemon
         working-directory: backend/mallapi
+
+      - name: Docker Login
+        run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+
+      - name: Docker Build & Push
+        run: |
+          docker build -t jun9579/amigo-mallapi:latest ./backend/mallapi
+          docker push jun9579/amigo-mallapi:latest
